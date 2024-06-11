@@ -1,0 +1,216 @@
+{
+  "characters": [
+    {
+      "id": 1,
+      "name": "Harry Potter",
+      "age": 17,
+      "occupation": "Student",
+      "location": "Gryffindor",
+      "specialAbilities": ["Parseltongue", "Flying on a broomstick", "Defence Against the Dark Arts"],
+      "backstory": "Orphaned at a young age, Harry discovers he is a wizard on his eleventh birthday. He attends Hogwarts School of Witchcraft and Wizardry where he faces various challenges, including defeating the dark wizard Lord Voldemort.",
+      "appearance": {
+        "hairColor": "Black",
+        "eyeColor": "Green",
+        "height": "5 feet 10 inches",
+        "otherFeatures": ["Lightning-shaped scar on forehead"]
+      },
+      "source": "Harry Potter film series"
+    },
+    {
+      "id": 2,
+      "name": "Arya Stark",
+      "age": 18,
+      "occupation": "Assassin",
+      "location": "Stark",
+      "specialAbilities": ["Faceless Man techniques", "Sword fighting (Needle)"],
+      "backstory": "Arya is the third child and younger daughter of Eddard and Catelyn Stark. After witnessing the execution of her father, she travels across Westeros and Essos, training to become a skilled assassin and seeking revenge against those who wronged her family.",
+      "appearance": {
+        "hairColor": "Brown",
+        "eyeColor": "Grey",
+        "height": "5 feet 1 inch",
+        "otherFeatures": ["Freckles on her face"]
+      },
+      "source": "Game of Thrones TV series"
+    },
+    {
+      "id": 3,
+      "name": "Sherlock Holmes",
+      "age": "40s",
+      "occupation": "Consulting Detective",
+      "location": "London",
+      "specialAbilities": ["Exceptional deductive reasoning", "Master of disguise", "Expert in forensic science"],
+      "backstory": "Sherlock Holmes is a brilliant consulting detective residing in London. He solves various complex criminal cases with the help of his trusted friend, Dr. John Watson.",
+      "appearance": {
+        "hairColor": "Black",
+        "eyeColor": "Grey",
+        "height": "6 feet 1 inch",
+        "otherFeatures": ["Thin build", "Aquiline nose"]
+      },
+      "source": "Sherlock TV series / Sherlock Holmes stories"
+    },
+    {
+      "id": 4,
+      "name": "Hermione Granger",
+      "age": 17,
+      "occupation": "Student",
+      "location": "Gryffindor",
+      "specialAbilities": ["Exceptional intelligence", "Skilled in spellcasting", "Expert in magical theory"],
+      "backstory": "A Muggle-born witch, Hermione is one of Harry Potter's best friends. She is known for her academic prowess and often assists Harry and Ron in their adventures.",
+      "appearance": {
+        "hairColor": "Brown",
+        "eyeColor": "Brown",
+        "height": "5 feet 4 inches",
+        "otherFeatures": ["Long curly hair"]
+      },
+      "source": "Harry Potter film series"
+    },
+    {
+      "id": 5,
+      "name": "Frodo Baggins",
+      "age": 50,
+      "occupation": "Adventurer",
+      "location": "The Shire",
+      "species": "Hobbit",
+      "specialAbilities": ["Ring bearer", "Resistance to the power of the One Ring", "Courage under pressure"],
+      "backstory": "Frodo is a hobbit from the Shire tasked with the perilous quest to destroy the One Ring and defeat the dark lord Sauron.",
+      "appearance": {
+        "hairColor": "Brown",
+        "eyeColor": "Blue",
+        "height": "3 feet 6 inches",
+        "otherFeatures": ["Large hairy feet"]
+      },
+      "source": "The Lord of the Rings film trilogy"
+    },
+    {
+      "id": 6,
+      "name": "Katniss Everdeen",
+      "age": 17,
+      "occupation": "Hunter",
+      "location": "District 12",
+      "specialAbilities": ["Archery skills", "Survival instincts", "Leadership abilities"],
+      "backstory": "Katniss is from District 12 in the dystopian world of Panem. She volunteers for the Hunger Games to protect her younger sister Prim and becomes a symbol of rebellion against the oppressive Capitol.",
+      "appearance": {
+        "hairColor": "Black",
+        "eyeColor": "Grey",
+        "height": "5 feet 8 inches",
+        "otherFeatures": ["Athletic build"]
+      },
+      "source": "The Hunger Games film series"
+    },
+    {
+      "id": 7,
+      "name": "Luke Skywalker",
+      "age": 23,
+      "occupation": "Jedi Knight",
+      "location": "Tatooine",
+      "species": "Human",
+      "specialAbilities": ["Proficient lightsaber duelist", "Force-sensitive", "Pilot skills"],
+      "backstory": "Luke is the son of Anakin Skywalker (Darth Vader) and Padmé Amidala. He becomes a key figure in the Rebel Alliance's fight against the Galactic Empire and trains as a Jedi under Obi-Wan Kenobi and Yoda.",
+      "appearance": {
+        "hairColor": "Blond",
+        "eyeColor": "Blue",
+        "height": "5 feet 9 inches",
+        "otherFeatures": ["Tattoo of a sun on his right shoulder"]
+      },
+      "source": "Star Wars film series"
+    },
+    {
+      "id": 8,
+      "name": "Elizabeth Bennet",
+      "age": 20,
+      "occupation": "Gentlewoman",
+      "location": "Longbourn",
+      "specialAbilities": ["Sharp wit", "Independent thinking", "Strong moral compass"],
+      "backstory": "Elizabeth is the protagonist of Jane Austen's novel Pride and Prejudice. She navigates societal expectations and romantic entanglements in Regency-era England.",
+      "appearance": {
+        "hairColor": "Brown",
+        "eyeColor": "Brown",
+        "height": "5 feet 7 inches",
+        "otherFeatures": ["Graceful stature"]
+      },
+      "source": "Pride and Prejudice (novel)"
+    },
+    {
+      "id": 9,
+      "name": "Captain Jack Sparrow",
+      "age": "40s",
+      "occupation": "Pirate",
+      "location": "Caribbean",
+      "specialAbilities": ["Masterful swordsmanship", "Unpredictability", "Charm"],
+      "backstory": "Captain Jack Sparrow is a notorious pirate known for his eccentric personality and unconventional methods. He sails the Caribbean in search of treasure and adventure.",
+      "appearance": {
+        "hairColor": "Brown",
+        "eyeColor": "Brown",
+        "height": "5 feet 9 inches",
+        "otherFeatures": ["Dreadlocks", "Distinctive pirate attire"]
+      },
+      "source": "Pirates of the Caribbean film series"
+    },
+    {
+      "id": 10,
+      "name": "Princess Leia Organa",
+      "age": "20s",
+      "occupation": "Princess / Rebel Leader",
+      "location": "Alderaan",
+      "species": "Human",
+      "specialAbilities": ["Leadership skills", "Proficient blaster user", "Strategic thinking"],
+      "backstory": "Princess Leia is a member of the Rebel Alliance and a key figure in the fight against the Galactic Empire. She is known for her bravery, intelligence, and determination.",
+      "appearance": {
+        "hairColor": "Brown",
+        "eyeColor": "Brown",
+        "height": "5 feet 1 inch",
+        "otherFeatures": ["Buns hairstyle"]
+      },
+      "source": "Star Wars film series"
+    },
+    {
+      "id": 11,
+      "name": "James Bond",
+      "age": "30s",
+      "occupation": "Secret Agent",
+      "location": "London",
+      "specialAbilities": ["Expert marksmanship", "Mastery of hand-to-hand combat", "Espionage skills"],
+      "backstory": "James Bond, also known by his code number 007, is a British Secret Service agent known for his suave demeanor, resourcefulness, and ability to outwit his adversaries.",
+      "appearance": {
+        "hairColor": "Brown",
+        "eyeColor": "Blue",
+        "height": "6 feet 1 inch",
+        "otherFeatures": ["Chiseled jawline"]
+      },
+      "source": "James Bond film series"
+    },
+    {
+      "id": 12,
+      "name": "Bilbo Baggins",
+      "age": 111,
+      "occupation": "Adventurer",
+      "location": "The Shire",
+      "species": "Hobbit",
+      "specialAbilities": ["Ring bearer", "Curiosity", "Skillful storyteller"],
+      "backstory": "Bilbo is Frodo Baggins' uncle and the protagonist of J.R.R. Tolkien's novel The Hobbit. He embarks on an unexpected journey to reclaim the Lonely Mountain from the dragon Smaug.",
+      "appearance": {
+        "hairColor": "Brown",
+        "eyeColor": "Blue",
+        "height": "3 feet 6 inches",
+        "otherFeatures": ["Plump physique"]
+      },
+      "source": "The Hobbit film trilogy"
+    },
+    {
+      "id": 13,
+      "name": "Wonder Woman",
+      "age": "100s (immortal)",
+      "occupation": "Superhero",
+      "location": "Themyscira",
+      "specialAbilities": ["Superhuman strength", "Flight", "Lasso of Truth"],
+      "backstory": "Wonder Woman, also known as Diana Prince, is an Amazonian warrior princess and one of the founding members of the Justice League. She fights for justice, love, and equality.",
+      "appearance": {
+        "hairColor": "Black",
+        "eyeColor": "Blue",
+        "height": "6 feet",
+        "otherFeatures": ["Amazonian physique"]
+      },
+      "source": "Wonder Woman film series / DC Comics"
+    }
+  ]
+}
