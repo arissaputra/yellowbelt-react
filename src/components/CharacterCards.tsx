@@ -5,7 +5,7 @@ import axios from 'axios';
 import { Character } from '../types/character';
 
 interface CharacterCardsProps {
-  isHome: boolean;
+  isHome?: boolean;
 }
 
 const CharacterCards = ({ isHome = false }: CharacterCardsProps) => {

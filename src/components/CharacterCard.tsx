@@ -1,13 +1,9 @@
 import { useState } from 'react';
 import { FaMapMarker } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import { Character } from '../types/character';
+import { CharacterProps } from '../types/character';
 
-interface CharacterCardProps {
-  character: Character;
-}
-
-const CharacterCard = ({ character }: CharacterCardProps) => {
+const CharacterCard = ({ character }: CharacterProps) => {
   const [showFullBackstory, setShowFullBackstory] = useState(false);
 
   const handleClick = () => {
@@ -32,9 +28,9 @@ const CharacterCard = ({ character }: CharacterCardProps) => {
           {backstory}
         </div>
 
-        <button onClick={handleClick} className="text-indigo-500 mb-5 hover:text-indigo-600"> {showFullBackstory ? 'Less' : 'More'}</button>
+        <button onClick={handleClick} className="text-sky-600 mb-5 hover:text-sky-500"> {showFullBackstory ? 'Less' : 'More'}</button>
 
-        <h3 className="text-indigo-500 mb-2">{character.occupation}</h3>
+        <h3 className="text-sky-600 mb-2">{character.occupation}</h3>
 
         <div className="border border-gray-100 mb-5"></div>
 
@@ -45,7 +41,7 @@ const CharacterCard = ({ character }: CharacterCardProps) => {
           </div>
           <Link
             to={`/characters/${character.id}`}
-            className="h-[36px] bg-indigo-500 hover:bg-indigo-600 text-white px-4 py-2 rounded-lg text-center text-sm"
+            className="h-[36px] bg-sky-600 hover:bg-sky-500 text-white px-4 py-2 rounded-lg text-center text-sm"
           >
             Read More
           </Link>

@@ -13,4 +13,10 @@ export interface Character {
     otherFeatures: string[];
   };
   source: string;
+  imageURL: string;
+}
+
+
+export interface CharacterProps {
+  character?: Character
 }
