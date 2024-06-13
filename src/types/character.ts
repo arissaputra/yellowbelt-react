@@ -18,5 +18,5 @@ export interface Character {
 
 
 export interface CharacterProps {
-  character?: Character
+  character: Character
 }

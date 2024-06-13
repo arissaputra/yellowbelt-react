@@ -10,19 +10,19 @@ const CharacterAppearance = ({ character }: CharacterProps) => {
       <h3 className="text-xl">Hair Color:</h3>
 
       <p className="my-2 bg-indigo-100 p-2 font-bold">
-        {character?.appearance.hairColor}
+        {character.appearance.hairColor}
       </p>
 
       <h3 className="text-xl">Eye Color:</h3>
 
       <p className="my-2 bg-indigo-100 p-2 font-bold">
-        {character?.appearance.eyeColor}
+        {character.appearance.eyeColor}
       </p>
 
       <h3 className="text-xl">Height:</h3>
 
       <p className="my-2 bg-indigo-100 p-2 font-bold">
-        {character?.appearance.height}
+        {character.appearance.height}
       </p>
 
       <hr className="my-4" />
@@ -30,7 +30,7 @@ const CharacterAppearance = ({ character }: CharacterProps) => {
       <h3 className="text-xl">Other Features:</h3>
 
       <ul className="my-2 list-disc list-inside">
-        {character?.appearance.otherFeatures.map((feature, index) => (
+        {character.appearance.otherFeatures.map((feature, index) => (
           <li key={index}>{feature}</li>
         ))}
       </ul>

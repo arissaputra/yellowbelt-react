@@ -9,19 +9,19 @@ const CharacterDetails = ({ character }: CharacterProps) => {
       </h3>
 
       <p className="mb-4">
-      {character?.backstory}
+      {character.backstory}
       </p>
 
       <h3 className="text-indigo-800 text-lg font-bold mb-2">Age</h3>
-      <p className="mb-4">{character?.age}</p>
+      <p className="mb-4">{character.age}</p>
 
       <h3 className="text-indigo-800 text-lg font-bold mb-2">Occupation</h3>
-      <p className="mb-4">{character?.occupation}</p>
+      <p className="mb-4">{character.occupation}</p>
 
       <h3 className="text-indigo-800 text-lg font-bold mb-2">Special Abilities</h3>
-      {character?.specialAbilities.map((ability, index) => (
-        <div className="flex align-middle justify-center md:justify-start">
-          <FaStar key={index} className="text-yellow-400 mr-2" />{ability}
+      {character.specialAbilities.map((ability, index) => (
+        <div key={index} className="flex align-middle justify-center md:justify-start">
+          <FaStar className="text-yellow-400 mr-2" />{ability}
         </div>
       ))}
     </div>

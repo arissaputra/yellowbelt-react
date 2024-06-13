@@ -1,13 +1,15 @@
 import { useParams } from 'react-router-dom';
 import { FaArrowLeft } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, lazy, Suspense } from 'react';
 import { Character } from '../types/character';
 import axios from 'axios';
-import CharacterAppearance from '../components/CharacterAppearance';
-import ManageCharacter from '../components/ManageCharacter';
-import CharacterDetails from '../components/CharacterDetails';
-import CharacterProfile from '../components/CharacterProfile';
+import Spinner from '../components/Spinner';
+
+const CharacterAppearance = lazy(() => import ('../components/CharacterAppearance'));
+const ManageCharacter = lazy(() => import ('../components/ManageCharacter'));
+const CharacterDetails = lazy(() => import ('../components/CharacterDetails'));
+const CharacterProfile = lazy(() => import ('../components/CharacterProfile'));
 
 const CharacterPage = () => {
   const [character, setCharacter] = useState<Character>();
@@ -45,13 +47,21 @@ const CharacterPage = () => {
         <div className="container m-auto py-10 px-6">
           <div className="grid grid-cols-1 md:grid-cols-70/30 w-full gap-6">
             <main>
-              <CharacterProfile character={character} />
-              <CharacterDetails character={character} />
+              <Suspense fallback={<Spinner loading={true} />}>
+                {character && <CharacterProfile character={character} />}
+              </Suspense>
+              <Suspense fallback={<Spinner loading={true} />}>
+                {character && <CharacterDetails character={character} />}
+              </Suspense>
             </main>
 
             <aside>
-              <CharacterAppearance character={character} />
-              <ManageCharacter character={character} />
+              <Suspense fallback={<Spinner loading={true} />}>
+                {character && <CharacterAppearance character={character} />}
+              </Suspense>
+              <Suspense fallback={<Spinner loading={true} />}>
+                {character && <ManageCharacter character={character} />}
+              </Suspense>
             </aside>
           </div>
         </div>
