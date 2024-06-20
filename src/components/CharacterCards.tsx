@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
 import CharacterCard from './CharacterCard';
 import Spinner from './Spinner';
-import axios from 'axios';
+import { useGetCharactersQuery } from '../api/charactersApi';
+import { useEffect } from 'react';
 import { Character } from '../types/character';
 
 interface CharacterCardsProps {
@@ -9,25 +9,20 @@ interface CharacterCardsProps {
 }
 
 const CharacterCards = ({ isHome = false }: CharacterCardsProps) => {
-  const [characters, setCharacters] = useState<Character[]>([]);
-  const [loading, setLoading] = useState(true);
+  const limit = isHome ? 3 : undefined;
+  const {data: characters, isLoading, refetch} = useGetCharactersQuery(limit)
 
   useEffect(() => {
-    const fetchCharacters = async () => {
-      const apiUrl = isHome ? '/api/characters?_limit=3' : '/api/characters'
-      try {
-        const res = await axios.get(apiUrl);
-        const data = res.data;
-        setCharacters(data)
-      } catch (error) {
-        console.log('Error fetching data', error);
-      } finally {
-        setLoading(false);
-      }
-    }
+    refetch();
+  }, [refetch]);
 
-    fetchCharacters();
-  }, [isHome])
+  if (isLoading) {
+    return <Spinner />
+  }
+
+  if (!characters || characters.length === 0) {
+    return <p>No characters found.</p>;
+  }
 
   return (
     <section className="bg-sky-50 px-4 py-10">
@@ -35,14 +30,11 @@ const CharacterCards = ({ isHome = false }: CharacterCardsProps) => {
         <h2 className="text-3xl font-bold text-sky-600 mb-6 text-center">
           {isHome ? 'Recent Characters' : 'Browse Characters'}
         </h2>
-        {loading ? (<Spinner loading={loading} />) : (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {characters.map((character) => (
-              <CharacterCard character={character} key={character.id} />
-            ))}
-          </div>
-        )}
-
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {characters.map((character: Character) => (
+            <CharacterCard character={character} key={character.id} />
+          ))}
+        </div>
       </div>
     </section>
   )

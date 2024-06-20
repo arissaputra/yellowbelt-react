@@ -1,10 +1,9 @@
 import { useParams } from 'react-router-dom';
 import { FaArrowLeft } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import { useEffect, useState, lazy, Suspense } from 'react';
-import { Character } from '../types/character';
-import axios from 'axios';
+import { lazy, Suspense, useEffect } from 'react';
 import Spinner from '../components/Spinner';
+import { useGetCharacterByIdQuery } from '../api/charactersApi';
 
 const CharacterAppearance = lazy(() => import ('../components/CharacterAppearance'));
 const ManageCharacter = lazy(() => import ('../components/ManageCharacter'));
@@ -12,23 +11,13 @@ const CharacterDetails = lazy(() => import ('../components/CharacterDetails'));
 const CharacterProfile = lazy(() => import ('../components/CharacterProfile'));
 
 const CharacterPage = () => {
-  const [character, setCharacter] = useState<Character>();
   const { id } = useParams();
+  const characterId = id ? id : undefined;
+  const { data: character, refetch } = useGetCharacterByIdQuery(characterId);
 
   useEffect(() => {
-    const fetchCharacter = async () => {
-      const apiUrl = `/api/characters/${id}`;
-      try {
-        const res = await axios.get(apiUrl);
-        const data = res.data;
-        setCharacter(data)
-      } catch (error) {
-        console.log('Error fetching data', error);
-      }
-    }
-
-    fetchCharacter()
-  }, [id])
+    refetch();
+  }, [characterId, refetch]);
 
   return (
     <>
@@ -47,19 +36,19 @@ const CharacterPage = () => {
         <div className="container m-auto py-10 px-6">
           <div className="grid grid-cols-1 md:grid-cols-70/30 w-full gap-6">
             <main>
-              <Suspense fallback={<Spinner loading={true} />}>
+              <Suspense fallback={<Spinner />}>
                 {character && <CharacterProfile character={character} />}
               </Suspense>
-              <Suspense fallback={<Spinner loading={true} />}>
+              <Suspense fallback={<Spinner />}>
                 {character && <CharacterDetails character={character} />}
               </Suspense>
             </main>
 
             <aside>
-              <Suspense fallback={<Spinner loading={true} />}>
+              <Suspense fallback={<Spinner />}>
                 {character && <CharacterAppearance character={character} />}
               </Suspense>
-              <Suspense fallback={<Spinner loading={true} />}>
+              <Suspense fallback={<Spinner />}>
                 {character && <ManageCharacter character={character} />}
               </Suspense>
             </aside>

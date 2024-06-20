@@ -1,6 +1,10 @@
-import { useState } from 'react';
+import { useNavigate } from "react-router-dom";
+import { useFormik } from 'formik';
 import { Character } from "../types/character";
 import { FaPlus } from 'react-icons/fa';
+import { toast } from 'react-toastify';
+import { useCreateCharacterMutation } from "../api/charactersApi";
+import Spinner from "../components/Spinner";
 
 const DEFAULT_VALUE: Character = {
   name: '',
@@ -20,38 +24,78 @@ const DEFAULT_VALUE: Character = {
 }
 
 const AddCharacterPage = () => {
-  const [character, setCharacter] = useState<Character>(DEFAULT_VALUE);
+  const navigate = useNavigate();
+  const [createCharacter, {isLoading:isCreating}] = useCreateCharacterMutation();
+  const character:Character = DEFAULT_VALUE;
 
-  const submitForm = (e: React.FormEvent<HTMLFormElement>): void => {
-    e.preventDefault();
+  const formik = useFormik({
+    enableReinitialize: true,
+    initialValues: {
+      source: character.source,
+      name: character.name,
+      age: character.age,
+      occupation: character.occupation,
+      location: character.location,
+      specialAbilities: character.specialAbilities,
+      backstory: character.backstory,
+      appearance: {
+        hairColor: character.appearance.hairColor,
+        eyeColor: character.appearance.eyeColor,
+        height: character.appearance.height,
+        otherFeatures: character.appearance.otherFeatures,
+      },
+      imageURL: character.imageURL,
+    },
+    onSubmit: async (values) => {
+      try {
+        await createCharacter({ ...values }).unwrap();
+        toast.success('Character created successfully');
+        navigate(`/characters`);
+      } catch (error) {
+        console.error('Failed to create character:', error);
+        toast.error('Failed to create character. Please try again.');
+      }
+    },
+  });
+
+  if (isCreating) {
+    return <Spinner />
   }
 
   const handleAddAbility = () => {
-    const updatedCharacter = {...character}
-    updatedCharacter.specialAbilities.push('')
-
-    setCharacter(updatedCharacter)
+    const updatedAbilities = [...formik.values.specialAbilities];
+    updatedAbilities.push('');
+    formik.setFieldValue('specialAbilities', updatedAbilities);
   }
 
   const handleRemoveAbility = (index: number) => {
-    const updatedCharacter = {...character}
-    updatedCharacter.specialAbilities.splice(index, 1)
+    const updatedAbilities = [...formik.values.specialAbilities];
+    updatedAbilities.splice(index, 1);
+    formik.setFieldValue('specialAbilities', updatedAbilities);
+  }
 
-    setCharacter(updatedCharacter)
+  const handleChangeAbility = (ability: string, index: number) => {
+    const updatedAbilities = [...formik.values.specialAbilities];
+    updatedAbilities[index] = ability;
+    formik.setFieldValue('specialAbilities', updatedAbilities);
   }
 
   const handleAddFeature = () => {
-    const updatedCharacter = {...character}
-    updatedCharacter.appearance.otherFeatures.push('')
-
-    setCharacter(updatedCharacter)
+    const updatedFeatures = [...formik.values.appearance.otherFeatures];
+    updatedFeatures.push('');
+    formik.setFieldValue('appearance.otherFeatures', updatedFeatures);
   }
 
   const handleRemoveFeature = (index: number) => {
-    const updatedCharacter = {...character}
-    updatedCharacter.appearance.otherFeatures.splice(index, 1)
+    const updatedFeatures = [...formik.values.appearance.otherFeatures];
+    updatedFeatures.splice(index, 1);
+    formik.setFieldValue('appearance.otherFeatures', updatedFeatures);
+  }
 
-    setCharacter(updatedCharacter)
+  const handleChangeFeature = (feature: string, index: number) => {
+    const updatedFeatures = [...formik.values.appearance.otherFeatures];
+    updatedFeatures[index] = feature;
+    formik.setFieldValue('appearance.otherFeatures', updatedFeatures);
   }
 
   return (
@@ -60,7 +104,7 @@ const AddCharacterPage = () => {
         <div
           className="bg-white px-6 py-8 mb-4 shadow-md rounded-md border m-4 md:m-0"
         >
-          <form onSubmit={submitForm}>
+          <form onSubmit={formik.handleSubmit}>
             <h2 className="text-3xl text-center font-semibold mb-6">Add Character</h2>
             <div className="mb-4">
               <label className="block text-gray-700 font-bold mb-2"
@@ -69,12 +113,10 @@ const AddCharacterPage = () => {
               <input
                 type="text"
                 id="source"
-                name="source"
                 className="border rounded w-full py-2 px-3 mb-2"
                 placeholder="eg. Doraemon Series"
                 required
-                value={character.source}
-                onChange={(e) => console.log(e.target.value)}
+                {...formik.getFieldProps('source')}
               />
             </div>
             <div className="mb-4">
@@ -84,12 +126,10 @@ const AddCharacterPage = () => {
               <input
                 type="text"
                 id="name"
-                name="name"
                 className="border rounded w-full py-2 px-3 mb-2"
                 placeholder="eg. Nobita"
                 required
-                value={character.name}
-                onChange={(e) => console.log(e.target.value)}
+                {...formik.getFieldProps('name')}
               />
             </div>
             <div className="mb-4">
@@ -99,12 +139,10 @@ const AddCharacterPage = () => {
               <input
                 type="number"
                 id="age"
-                name="age"
                 className="border rounded w-full py-2 px-3 mb-2"
                 placeholder="eg. 10"
                 required
-                value={character.age}
-                onChange={(e) => console.log(Number(e.target.value))}
+                {...formik.getFieldProps('age')}
               />
             </div>
             <div className="mb-4">
@@ -114,12 +152,10 @@ const AddCharacterPage = () => {
               <input
                 type="text"
                 id="occupation"
-                name="occupation"
                 className="border rounded w-full py-2 px-3 mb-2"
                 placeholder="eg. Student"
                 required
-                value={character.occupation}
-                onChange={(e) => console.log(e.target.value)}
+                {...formik.getFieldProps('occupation')}
               />
             </div>
             <div className="mb-4">
@@ -129,12 +165,10 @@ const AddCharacterPage = () => {
               <input
                 type="text"
                 id="location"
-                name="location"
                 className="border rounded w-full py-2 px-3 mb-2"
                 placeholder="eg. Japan"
                 required
-                value={character.location}
-                onChange={(e) => console.log(e.target.value)}
+                {...formik.getFieldProps('location')}
               />
             </div>
             <div className="mb-4">
@@ -146,14 +180,14 @@ const AddCharacterPage = () => {
                   Add <FaPlus className="ml-2" />
                 </button>
               </div>
-              {character.specialAbilities.map((ability, abilityIndex) => (
+              {formik.values.specialAbilities.map((ability, abilityIndex) => (
                 <div className="flex" key={abilityIndex}>
                   <input
                     type="text"
                     className="border rounded w-9/12 py-2 px-3 mb-2"
                     required
                     value={ability}
-                    onChange={(e) => console.log(e.target.value)}
+                    onChange={(e) => handleChangeAbility(e.target.value, abilityIndex)}
                   />
                   <button onClick={() => handleRemoveAbility(abilityIndex)} className="text-red-600 px-3 py-1 text-xs outline-none focus:outline-none mr-1 mb-1 flex items-center" type="button">
                     remove
@@ -167,13 +201,11 @@ const AddCharacterPage = () => {
               >
               <textarea
                 id="backstory"
-                name="backstory"
                 rows={5}
                 className="border rounded w-full py-2 px-3 mb-2"
                 placeholder=""
                 required
-                value={character.backstory}
-                onChange={(e) => console.log(e.target.value)}
+                {...formik.getFieldProps('backstory')}
               />
             </div>
 
@@ -185,12 +217,10 @@ const AddCharacterPage = () => {
               <input
                 type="text"
                 id="hair-color"
-                name="hair-color"
                 className="border rounded w-full py-2 px-3 mb-2"
                 placeholder="eg. Black"
                 required
-                value={character.appearance.hairColor}
-                onChange={(e) => console.log(e.target.value)}
+                {...formik.getFieldProps('appearance.hairColor')}
               />
             </div>
             <div className="mb-4">
@@ -200,12 +230,10 @@ const AddCharacterPage = () => {
               <input
                 type="text"
                 id="eye-color"
-                name="eye-color"
                 className="border rounded w-full py-2 px-3 mb-2"
                 placeholder="eg. Black"
                 required
-                value={character.appearance.eyeColor}
-                onChange={(e) => console.log(e.target.value)}
+                {...formik.getFieldProps('appearance.eyeColor')}
               />
             </div>
             <div className="mb-4">
@@ -215,12 +243,10 @@ const AddCharacterPage = () => {
               <input
                 type="text"
                 id="height"
-                name="height"
                 className="border rounded w-full py-2 px-3 mb-2"
                 placeholder="eg. Black"
                 required
-                value={character.appearance.height}
-                onChange={(e) => console.log(e.target.value)}
+                {...formik.getFieldProps('appearance.height')}
               />
             </div>
             <div className="mb-4">
@@ -232,14 +258,14 @@ const AddCharacterPage = () => {
                   Add <FaPlus className="ml-2" />
                 </button>
               </div>
-              {character.appearance.otherFeatures.map((feature, featureIndex) => (
+              {formik.values.appearance.otherFeatures.map((feature, featureIndex) => (
                 <div className="flex" key={featureIndex}>
                   <input
                     type="text"
                     className="border rounded w-9/12 py-2 px-3 mb-2"
                     required
                     value={feature}
-                    onChange={(e) => console.log(e.target.value)}
+                    onChange={(e) => handleChangeFeature(e.target.value, featureIndex)}
                   />
                   <button onClick={() => handleRemoveFeature(featureIndex)} className="text-red-600 px-3 py-1 text-xs outline-none focus:outline-none mr-1 mb-1 flex items-center" type="button">
                     remove
@@ -255,12 +281,10 @@ const AddCharacterPage = () => {
               <input
                 type="text"
                 id="image-url"
-                name="image-url"
                 className="border rounded w-full py-2 px-3 mb-2"
                 placeholder=""
                 required
-                value={character.imageURL}
-                onChange={(e) => console.log(e.target.value)}
+                {...formik.getFieldProps('imageURL')}
               />
             </div>
 
