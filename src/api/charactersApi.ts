@@ -9,10 +9,11 @@ const charactersApi = createApi({
   endpoints: (builder) => ({
     getCharacters: builder.query<Character[], number | undefined>({
       query: (limit) => {
+        let url = '?_sort=-createdAt';
         if (limit) {
-          return `?_limit=${limit}`;
+          url += `&_limit=${limit}`
         }
-        return '/';
+        return url;
       },
     }),
     getCharacterById: builder.query<Character, string | undefined>({

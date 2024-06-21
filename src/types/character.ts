@@ -14,8 +14,8 @@ export interface Character {
   };
   source: string;
   imageURL: string;
+  createdAt: number | undefined;
 }
-
 
 export interface CharacterProps {
   character: Character
